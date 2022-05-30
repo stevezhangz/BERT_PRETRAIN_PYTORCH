@@ -1,5 +1,11 @@
 import torch
-
+import numpy as np
+import random
+def setup_seed(random_number):
+    torch.manual_seed(random_number)
+    torch.cuda.manual_seed(random_number)
+    np.random.seed(random_number)
+    random.seed(random_number)
 def topk_acc(output,top_k,label):
     value,index=output.topk(top_k,1,True,True)
     label=label.unsqueeze(-1).repeat(1,index.size(-1))
