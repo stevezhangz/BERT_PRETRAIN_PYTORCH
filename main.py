@@ -4,7 +4,14 @@ from build_dataset import build_dataset
 from bert import *
 import argparse
 from tensorboardX import SummaryWriter
-
+import numpy as np
+import random
+def setup_seed(random_number):
+    torch.manual_seed(random_number)
+    torch.cuda.manual_seed(random_number)
+    np.random.seed(random_number)
+    random.seed(random_number)
+setup_seed(9527)
 parse=argparse.ArgumentParser()
 parse.add_argument('--device',default='cuda')
 parse.add_argument('--vocab_size',default=30000,type=int)
